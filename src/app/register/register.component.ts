@@ -11,7 +11,8 @@ import { UserService } from '../services/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm!: FormGroup
+  registerForm!: FormGroup;
+  isSubmitted = false;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
   initForm(){
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       birthday: ['', Validators.required],
@@ -32,7 +33,10 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+  get f() { return this.registerForm.controls; }
+
   onSubmit() {
+    this.isSubmitted = true;
     const formValue = this.registerForm.value;
     const user = new User(
       formValue['username'],
