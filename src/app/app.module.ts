@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './auth.guard';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
