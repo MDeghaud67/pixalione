@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 
@@ -10,17 +11,19 @@ import { UserService } from '../services/user.service';
 })
 export class ProfileEditComponent implements OnInit {
   selectedUser!: User;
-  profileForm!: FormGroup;
+  editForm!: FormGroup;
+  isSubmitted = false;
 
   constructor(private formBuilder: FormBuilder,
-              private userService: UserService) { }
+              private userService: UserService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.setupForm();
   }
 
   setupForm(){
-    this.profileForm = this.formBuilder.group({
+    this.editForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       firstName: ['', Validators.required],
@@ -28,17 +31,30 @@ export class ProfileEditComponent implements OnInit {
       birthday: ['', Validators.required],
       gender: ['', Validators.required]
     });
-    this.profileForm.valueChanges
+    this.editForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
   }
 
-  get f() { return this.profileForm.controls; }
+  get f() { return this.editForm.controls; }
 
   onSubmit() {
+    this.isSubmitted = true;
+    if (this.editForm.invalid) {
+      return;
+    }
+    if(this.isSubmitted){
+      this.router.navigateByUrl('/profile');
+    }
+    /*this.userService.updateUser(this.editForm.value).subscribe(x => {
+      window.location.reload();
+    }, 
+      error => {
+        console.log('Error encountered during form submission');
+      });*/
     // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
+    //console.warn(this.editForm.value);
   }
   onValueChanged(data?: any) {
-    
+
   }
 }
