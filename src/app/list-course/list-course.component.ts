@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Course } from '../models/course';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
+import { CourseService } from '../services/course.service';
 import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  selector: 'app-list-course',
+  templateUrl: './list-course.component.html',
+  styleUrls: ['./list-course.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class ListCourseComponent implements OnInit {
 
-  users!: User[];
-  userSubscription!: Subscription;
+  courses!: Course[];
+  courseSubscription!: Subscription;
   userId!: number;
-  user!: User;
+  course!: Course;
 
-  constructor(private userService: UserService, 
+  constructor(private courseService: CourseService, 
               private authService: AuthService,
               private router: Router,
               private activatedRoute: ActivatedRoute) { }
@@ -29,29 +31,19 @@ export class AdminComponent implements OnInit {
         map((user: User) => this.user = user)
       ).subscribe()
     }*/
-    this.userSubscription = this.userService.userSubject.subscribe(
-      (users: User[]) => {
-        this.users = users;
+    this.courseSubscription = this.courseService.userSubject.subscribe(
+      (courses: Course[]) => {
+        this.courses = courses;
       }
     );
-    this.userService.emitUsers();
+    this.courseService.emitUsers();
   }
 
   ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
+    this.courseSubscription.unsubscribe();
   }
 
-  logout(){
-    this.authService.logout();
-    this.router.navigateByUrl('/login');
-  }
-  edit(){
-    this.router.navigateByUrl('/edit');
-  }
-  createCourse(){
-    this.router.navigateByUrl('/create');
-  }
-  list(){
-    this.router.navigateByUrl('/courses');
+  admin(){
+    this.router.navigateByUrl('/admin');
   }
 }

@@ -1,0 +1,47 @@
+<form [formGroup]="courseForm" name="form" (ngSubmit)="onSubmit()"> 
+    <div class="form-group">
+        <label for="name">Name: </label>
+        <input id="name" type="text" class="form-control" name="name" formControlName="name">
+        <div *ngIf="isSubmitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Description: </label>
+        <textarea name="description" id="" cols="30" rows="10" class="form-control" formControlName="description"></textarea>
+        <div *ngIf="isSubmitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">Description is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="category">Category: </label>
+        <input id="category" type="text" class="form-control" name="category" formControlName="category">
+        <div *ngIf="isSubmitted && f.category.errors" class="invalid-feedback">
+            <div *ngIf="f.category.errors.required">Category is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="subject">Subject: </label>
+        <input id="subject" type="text" class="form-control" name="subject" formControlName="subject">
+        <div *ngIf="isSubmitted && f.subject.errors" class="invalid-feedback">
+            <div *ngIf="f.subject.errors.required">Subject is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="time">Start-end time: </label>
+        <input id="time" type="text" class="form-control" name="time" formControlName="time">
+        <div *ngIf="isSubmitted && f.time.errors" class="invalid-feedback">
+            <div *ngIf="f.time.errors.required">Time is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="nbStudent">Number of students: </label>
+        <input id="nbStudent" type="text" class="form-control" name="nbStudent" formControlName="nbStudent">
+        <div *ngIf="isSubmitted && f.nbStudent.errors" class="invalid-feedback">
+            <div *ngIf="f.nbStudent.errors.required">Number of students is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" [disabled]="!courseForm.valid">Sign Up</button>
+    </div>
+</form>

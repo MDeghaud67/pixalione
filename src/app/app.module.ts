@@ -13,13 +13,17 @@ import { AuthGuard } from './auth.guard';
 import { Role } from './models/role';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { AdminComponent } from './admin/admin.component';
+import { CreateCourseComponent } from './create-course/create-course.component';
+import { ListCourseComponent } from './list-course/list-course.component';
 
 const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], data: { roles: [Role.Student] } },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: [Role.Instructor] } },
-  { path: 'edit', component: ProfileEditComponent }
+  { path: 'edit', component: ProfileEditComponent },
+  { path: 'courses', component: ListCourseComponent },
+  { path: 'create', component: CreateCourseComponent }
 ];
 
 @NgModule({
@@ -29,7 +33,9 @@ const appRoutes: Routes = [
     RegisterComponent,
     ProfileComponent,
     ProfileEditComponent,
-    AdminComponent
+    AdminComponent,
+    CreateCourseComponent,
+    ListCourseComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,15 @@
-<p>admin works!</p>
+<h1>Welcome admin</h1>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let user of users">
+      <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+      <p>{{ user.username }}</p>
+      <p>{{ user.birthday }}</p>
+      <p>{{ user.gender }}</p>
+      <p>Your role is: <strong>{{user.role}}</strong>.</p>
+    </li>
+  </ul>
+<p><button (click)="edit()">Edit</button></p>
+<p><button (click)="createCourse()">Create a course</button></p>
+<p><button (click)="list()">List Course</button></p>
+<p><button (click)="logout()">Logout</button></p>
+

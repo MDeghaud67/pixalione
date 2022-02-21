@@ -1,0 +1,12 @@
+<h1>Welcome admin</h1>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let course of courses">
+      <h3>{{ course.name }}</h3>
+      <p>{{ course.description }}</p>
+      <p>{{ course.category }}</p>
+      <p>{{ course.subject }}</p>
+      <p>{{course.time}}</p>
+      <p>{{ course.nbStudent }}</p>
+    </li>
+  </ul>
+<p><button (click)="admin()">Admin</button></p>
