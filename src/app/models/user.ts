@@ -1,3 +1,4 @@
+import { Role } from "./role";
 export class User {
     constructor(
         public username: string,
@@ -6,6 +7,7 @@ export class User {
         public lastName: string,
         public birthday: string,
         public gender: string,
-        //public token: string
+        public role: Role,
+        public token?: string
     ){}
 }

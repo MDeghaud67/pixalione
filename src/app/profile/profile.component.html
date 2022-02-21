@@ -5,6 +5,8 @@
       <p>{{ user.username }}</p>
       <p>{{ user.birthday }}</p>
       <p>{{ user.gender }}</p>
+      <p>Your role is: <strong>{{user.role}}</strong>.</p>
     </li>
   </ul>
+<p><button (click)="edit()">Edit</button></p>
 <p><button (click)="logout()">Logout</button></p>

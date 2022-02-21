@@ -29,7 +29,8 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       birthday: ['', Validators.required],
-      gender: ['', Validators.required]
+      gender: ['', Validators.required],
+      role: ['', Validators.required]
     })
   }
 
@@ -44,7 +45,8 @@ export class RegisterComponent implements OnInit {
       formValue['firstName'],
       formValue['lastName'],
       formValue['birthday'],
-      formValue['gender']
+      formValue['gender'],
+      formValue['role']
     )
     this.userService.addUser(user);
     this.router.navigate(['/login']);

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,14 @@ import { Subject } from 'rxjs';
 export class UserService {
   private users!: User[];
   userSubject = new Subject<User[]>();
+
+  constructor(private http: HttpClient) { }
+
+  /*findOne(id: number): Observable<User>{
+    return this.http.get('api/users/' + id).pipe(
+      map((user: User) => user)
+    )
+  }*/
 
   emitUsers() {
     this.userSubject.next(this.users.slice());
@@ -17,6 +27,4 @@ export class UserService {
     this.users.push(user);
     this.emitUsers();
   }
-  
-  constructor() { }
 }
